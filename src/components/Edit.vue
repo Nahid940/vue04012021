@@ -1,7 +1,7 @@
 <template>
     <div class="edit">
         <div class="col-md-6 col-md-offset-3">
-            <form v-on:submit.prevent='updateForm' class="form-horizontal" enctype="multipart/form-data" method="post" action="">
+            <form v-on:submit.prevent='updateForm' class="form-horizontal" method="post" action="">
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="fname">First Name: *</label>
                     <div class="col-sm-9">
@@ -138,19 +138,21 @@ export default {
             bodyFormData.append('phone',this.employee.phone);
             bodyFormData.append('options',this.employee.options);
             bodyFormData.append('image',this.employee.image);
+            bodyFormData.append('_method', 'PUT');
 
             Vue.axios.put('http://localhost:8080/api/employee',
             bodyFormData,
             {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    //'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data'
                 }
             }).then((response) => {
                 if(response.status==200)
                 {
                     alert("Data updated successfully!")
                     setTimeout(function(){
-                        window.location.href = "http://localhost:8081/"
+                        // window.location.href = "http://localhost:8081/"
                     },2000)
                 }
             })
