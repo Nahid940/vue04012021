@@ -152,7 +152,7 @@ export default {
                 {
                     alert("Data updated successfully!")
                     setTimeout(function(){
-                        // window.location.href = "http://localhost:8081/"
+                        window.location.href = "http://localhost:8081/"
                     },2000)
                 }
             })
