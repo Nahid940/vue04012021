@@ -1,7 +1,6 @@
 <template>
   <div class="">
       <Table/>
-      {{number}}
   </div>
 </template>
 

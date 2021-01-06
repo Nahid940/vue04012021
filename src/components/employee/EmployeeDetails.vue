@@ -21,14 +21,12 @@
                     </tr>
                 </tbody>
             </table>
-            <p>
+            <!-- <p>
                 This is store data
                 {{store_data}}
-            </p>
-
+            </p> -->
             <input type="text" v-on:keyup="storeInputValue" class="form-control" v-model="input_value">
-
-            <p>{{this.$store.getters.getInputvalue}}</p>
+            <ValueShow></ValueShow>
         </div>
     </div>
 </template>
@@ -37,6 +35,7 @@
 import Vue from 'vue';
 import axios from 'axios'
 import Vueaxios from 'vue-axios'
+import ValueShow from './ValueShow'
 Vue.use(Vueaxios,axios)
 
 export default {
@@ -59,7 +58,6 @@ export default {
             value:0,
             store_data:{},
             input_value:null,
-            stored_input_value:null
         }
     },
     methods:{
@@ -79,12 +77,14 @@ export default {
             // this.$store.dispatch('addEmployee',this.employee)
             this.$store.commit('addEmployee',this.employee)
             this.store_data=this.$store.state.employee
-            this.stored_input_value=this.$store.state.input_value
         })
     },
     computed:
     {
     
+    },
+    components:{
+        ValueShow
     }
 }
 </script>

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from "../components/Home.vue";
 import Create from '../components/Create.vue'
 import Edit from '../components/Edit.vue'
+import Login from '../components/login/Login.vue'
 import EmployeeDetails from '../components/employee/EmployeeDetails.vue'
 
 Vue.use(Router)
@@ -18,6 +19,11 @@ export default new Router({
             path: "/create",
             name: "Create",
             component: Create,
+        },
+        {
+            path: "/login",
+            name: "Login",
+            component: Login,
         },
         {
             path:'/edit/:id',

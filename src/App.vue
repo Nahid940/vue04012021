@@ -2,7 +2,8 @@
   <div id="app">
     <div style="clear:both;text-align:center;margin-bottom:10px;">
       <router-link to="/">Home</router-link>&nbsp;
-      <router-link to="/create">Add New</router-link>
+      <router-link to="/create">Add New</router-link>&nbsp;
+      <router-link to="/login">Login</router-link>
     </div>
     <router-view></router-view>
   </div>
