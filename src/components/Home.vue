@@ -6,7 +6,6 @@
 </template>
 
 <script>
-    import store from '../store/inex.js'
     import Table from '../components/table/Table.vue'
     export default {
         name: 'Home',
@@ -19,8 +18,9 @@
             Table
         },
         props: {},
-        mounted(){
-            this.number=store.getters.getCurrentNumber
+        created(){
+            this.number=this.$store.getters.getCurrentNumber
+            console.log(this.$store.state.employee)
         }
     }
 </script>

@@ -117,7 +117,7 @@ export default {
             id:this.$route.params.id
         } 
     },
-    mounted()
+    created()
     {
         Vue.axios.get('http://localhost:8080/api/employee/'+this.id).then((response) => {
             this.employee=response.data.employee
