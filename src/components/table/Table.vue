@@ -3,7 +3,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Sl</th>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
@@ -18,7 +18,7 @@
 
             <tbody>
                 <tr v-for='employee in employees' :key='employee.id'>
-                    <td>-</td>
+                    <td>{{employee.id}}</td>
                     <td>{{employee.fname+" "+employee.lname}}</td>
                     <td>{{employee.email}}</td>
                     <td>{{employee.phone}}</td>
