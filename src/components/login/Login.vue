@@ -1,17 +1,17 @@
 <template>
     <div class="login">
         <div class="col-md-6 col-md-offset-3">
-            <form v-on:submit.prevent='loginForm' class="form-horizontal" method="post" action="">
+            <form v-on:submit.prevent='doLogin' class="form-horizontal" method="post" action="">
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="fname">Username *</label>
                     <div class="col-sm-9">
-                        <input type="text" v-model='username' class="form-control" value="" id="fname" placeholder="Username" name="fname">
+                        <input type="text" v-model='username' class="form-control" value="" id="username" placeholder="Username" name="fname">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="fname">Password *</label>
                     <div class="col-sm-9">
-                        <input type="text" v-model='password' class="form-control" value="" id="fname" placeholder="Password" name="password">
+                        <input type="password" v-model='password' class="form-control" value="" id="password" placeholder="Password" name="password">
                     </div>
                 </div>
                 <div class="form-group">
@@ -42,7 +42,20 @@ export default {
     methods:{
         doLogin()
         {
-            Vue.axios.post('localhost:8080').then((response)=>{console.log(response)})
+            var bodyFormData = new FormData();
+            bodyFormData.append('username',this.username)
+            bodyFormData.append('password',this.password)
+            Vue.axios.post('http://localhost:8080/api/employee/login',
+            bodyFormData,
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+            ).then((response)=>{
+                this.$store.commit('storeUser',response.data.user)
+                this.$store.commit('isLoggedin',true)
+            })
         }
     }
 }

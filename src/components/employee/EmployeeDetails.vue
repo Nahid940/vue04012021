@@ -67,7 +67,8 @@ export default {
         },
         storeInputValue()
         {
-            this.$store.commit('changeInputValue',this.input_value)
+            // this.$store.commit('changeInputValue',this.input_value)
+            this.$store.dispatch('addInputValue',this.input_value)
         }
     },
     created()
