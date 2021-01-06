@@ -17,8 +17,13 @@
             </thead>
 
             <tbody>
+<<<<<<< HEAD
                 <tr v-for='employee in employees' :key='employee.id'>
                     <td>{{employee.id}}</td>
+=======
+                <tr v-for='(employee,i) in employees' :key='employee.id'>
+                    <td>{{i+=1}}</td>
+>>>>>>> 4f59624acb4b265723fefb027b178aae8334ee4f
                     <td>{{employee.fname+" "+employee.lname}}</td>
                     <td>{{employee.email}}</td>
                     <td>{{employee.phone}}</td>
@@ -33,7 +38,7 @@
                     <td>
                         <router-link :to="{name:'Edit',params:{id:employee.id}}" title="Edit" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></router-link>
                         &nbsp;
-                        <a href="" title="Delete" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                        <a @click="onDelete(employee.id)" title="Delete" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -60,6 +65,18 @@
             Vue.axios.get('http://localhost:8080/api/employee').then((response) => {
                 this.employees=response.data.employees
             })
+        },
+        methods:{
+            onDelete(id){
+                Vue.axios.post('http://localhost:8080/api/employee',
+                {id:id,'del':1},
+                {
+                    headers: {
+                    'Content-Type': 'multipart/form-data'
+                    }
+                }
+                ).then((response)=>console.log(response))
+            }
         }
     }
 </script>

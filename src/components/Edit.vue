@@ -36,10 +36,10 @@
                     <label class="control-label col-sm-3" for="gender">Gender:</label>
                     <div class="col-sm-9">
                         <div class="radio">
-                            <label><input type="radio" v-model="employee.gender" value="male" name="gender">Male</label>
+                            <label><input type="radio" :checked="employee.gender==1"  v-model="employee.gender" value="1" name="gender">Male</label>
                         </div>
                         <div class="radio">
-                            <label><input type="radio" v-model='employee.gender' value="female" name="gender">Female</label>
+                            <label><input type="radio" :checked="employee.gender==2" v-model='employee.gender' value="2" name="gender">Female</label>
                         </div>
                     </div>
                 </div>
@@ -138,9 +138,9 @@ export default {
             bodyFormData.append('phone',this.employee.phone);
             bodyFormData.append('options',this.employee.options);
             bodyFormData.append('image',this.employee.image);
-            bodyFormData.append('_method', 'PUT');
+            bodyFormData.append('update',true);
 
-            Vue.axios.put('http://localhost:8080/api/employee',
+            Vue.axios.post('http://localhost:8080/api/employee',
             bodyFormData,
             {
                 headers: {
