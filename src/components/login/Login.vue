@@ -28,8 +28,7 @@
 
 import Vue from 'vue'
 import axios from 'vue-axios'
-import VueAxios from 'vue-axios'
-Vue.use(VueAxios,axios)
+Vue.use(axios)
 export default {
     name:'Login',
     data()
@@ -45,17 +44,16 @@ export default {
             var bodyFormData = new FormData();
             bodyFormData.append('username',this.username)
             bodyFormData.append('password',this.password)
-            Vue.axios.post('http://localhost:8080/api/employee/login',
-            bodyFormData,
-            {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-            ).then((response)=>{
-                this.$store.commit('storeUser',response.data.user)
-                this.$store.commit('isLoggedin',true)
-            })
+            // Vue.axios.post('http://localhost:8080/api/employee/login',
+            // bodyFormData,
+            // {
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     }
+            // }).then((response)=>{
+                this.$store.dispatch('storeCredentials',bodyFormData)
+                // this.$store.dispatch('userLoggedIn',true)
+            // })
         }
     }
 }

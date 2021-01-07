@@ -18,8 +18,8 @@
         },
         props: {},
         created(){
-            this.number=this.$store.getters.getCurrentNumber
-            console.log(this.$store.state.employee)
+            this.number=this.$store.getters.getCurrentNumber,
+            console.log(this.$store.getters.get_credentials)
         }
     }
 </script>
