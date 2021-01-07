@@ -28,7 +28,8 @@
 
 import Vue from 'vue'
 import axios from 'vue-axios'
-Vue.use(axios)
+import VueAlertify from 'vue-alertify'
+Vue.use(VueAlertify,axios)
 export default {
     name:'Login',
     data()
@@ -44,16 +45,16 @@ export default {
             var bodyFormData = new FormData();
             bodyFormData.append('username',this.username)
             bodyFormData.append('password',this.password)
-            // Vue.axios.post('http://localhost:8080/api/employee/login',
-            // bodyFormData,
-            // {
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     }
-            // }).then((response)=>{
+            if(this.username=='')
+            {
+                 this.$alertify.error('Username required');
+            }else if(this.password=='')
+            {
+                 this.$alertify.error('Password required');
+            }else
+            {
                 this.$store.dispatch('storeCredentials',bodyFormData)
-                // this.$store.dispatch('userLoggedIn',true)
-            // })
+            }
         }
     }
 }
