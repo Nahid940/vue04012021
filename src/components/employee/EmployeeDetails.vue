@@ -67,17 +67,16 @@ export default {
         },
         storeInputValue()
         {
-            // this.$store.commit('changeInputValue',this.input_value)
-            this.$store.dispatch('addInputValue',this.input_value)
+            this.$store.dispatch('updateInputValue',this.input_value)
         }
     },
     created()
     {
         Vue.axios.get('http://localhost:8080/api/employee/'+this.$route.params.id).then((response) => {
             this.employee=response.data.employee,
-            // this.$store.dispatch('addEmployee',this.employee)
-            this.$store.commit('addEmployee',this.employee)
-            this.store_data=this.$store.state.employee
+            this.$store.dispatch('storeEmployeeDate',this.employee)
+            // this.$store.commit('addEmployee',this.employee)
+            // this.store_data=this.$store.state.employee
         })
     },
     computed:
