@@ -6,7 +6,8 @@ const employees={
         user_input:null,
         employee:{},
         credentials:{},
-        is_logged_in:false
+        is_logged_in:false,
+        failed:false
     },
     actions:{
         /*
@@ -23,21 +24,29 @@ const employees={
                     'Content-Type': 'application/json'
                 }
             }).then((response)=>{
-                commit('mutateCredentials',response.data.user)
-                commit('mutateLoginSuccess',true)
+                if(response.data.status==200)
+                {
+                    commit('mutateCredentials',response.data.user)
+                    commit('mutateLoginSuccess',true)
+                }else
+                {
+                    commit('mutateLoginFailed',true)
+                }
             })
         )},
     mutations:{
         mutateInputUpdate:(state,payload)=>{state.user_input=payload},
         mutateEmployeeData:(state,payload)=>{state.employee=payload},
         mutateCredentials:(state,payload)=>{state.credentials=payload},
-        mutateLoginSuccess:(state,payload)=>{state.is_logged_in=payload}
+        mutateLoginSuccess:(state,payload)=>{state.is_logged_in=payload},
+        mutateLoginFailed:(state,payload)=>{state.failed=payload}
     },
     getters:{
         get_user_input:(state)=>(state.user_input),
         get_employee:(state)=>(state.employee),
         get_credentials:(state)=>(state.credentials),
-        get_is_logged_in:(state)=>(state.is_logged_in)
+        get_is_logged_in:(state)=>(state.is_logged_in),
+        get_is_failed_in:(state)=>(state.failed)
     }
 }
 

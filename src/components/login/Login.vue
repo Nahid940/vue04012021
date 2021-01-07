@@ -1,6 +1,7 @@
 <template>
     <div class="login">
         <div class="col-md-6 col-md-offset-3">
+            <p class="text-center text-danger" v-if="this.$store.getters.get_is_failed_in">Invalid Credentials!!</p>
             <form v-on:submit.prevent='doLogin' class="form-horizontal" method="post" action="">
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="fname">Username *</label>
@@ -53,7 +54,7 @@ export default {
                  this.$alertify.error('Password required');
             }else
             {
-                this.$store.dispatch('storeCredentials',bodyFormData)
+                this.$store.dispatch('storeCredentials',bodyFormData) 
             }
         }
     }
