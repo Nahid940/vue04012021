@@ -5,6 +5,7 @@
       <router-link to="/create">Add New</router-link>&nbsp;
       <router-link v-if="!this.$store.getters.get_is_logged_in" to="/login">Login</router-link>
       <router-link v-else to="">Logout {{this.$store.getters.get_credentials.full_name}}</router-link>
+      <router-link to="/person-info">Person Info</router-link>
     </div>
     <router-view></router-view>
   </div>
